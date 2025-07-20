@@ -120,8 +120,8 @@ function loadEarningsData() {
         
         const actionsCell = document.createElement('td');
         const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = '<i class="fas fa-trash"></i> Remover';
-        deleteBtn.className = 'btn-action';
+        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+        deleteBtn.className = 'btn-action btn-delete';
         deleteBtn.addEventListener('click', () => deleteEarning(doc.id));
         actionsCell.appendChild(deleteBtn);
         
@@ -144,7 +144,7 @@ function saveEarning() {
   const amount = parseFloat(document.getElementById('earnings-amount').value);
   
   if (!amount || amount <= 0) {
-    alert('Informe um valor válido');
+    showToast('Informe um valor válido', 'error');
     return;
   }
   
@@ -164,7 +164,7 @@ function saveEarning() {
     showToast('Erro ao salvar: ' + error.message, 'error');
   }).finally(() => {
     saveEarningsBtn.disabled = false;
-    saveEarningsBtn.innerHTML = 'Salvar';
+    saveEarningsBtn.innerHTML = '<i class="fas fa-save"></i> Salvar Ganho';
   });
 }
 
@@ -224,8 +224,8 @@ function loadFuelData() {
         
         const actionsCell = document.createElement('td');
         const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = '<i class="fas fa-trash"></i> Remover';
-        deleteBtn.className = 'btn-action';
+        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+        deleteBtn.className = 'btn-action btn-delete';
         deleteBtn.addEventListener('click', () => deleteFuel(doc.id));
         actionsCell.appendChild(deleteBtn);
         
@@ -249,7 +249,7 @@ function saveFuel() {
   const liters = parseFloat(document.getElementById('fuel-liters').value);
   
   if (!amount || amount <= 0) {
-    alert('Informe um valor válido');
+    showToast('Informe um valor válido', 'error');
     return;
   }
   
@@ -278,7 +278,7 @@ function saveFuel() {
     })
     .finally(() => {
       saveFuelBtn.disabled = false;
-      saveFuelBtn.innerHTML = 'Salvar';
+      saveFuelBtn.innerHTML = '<i class="fas fa-save"></i> Salvar Abastecimento';
     });
 }
 
@@ -358,16 +358,16 @@ function loadKmData() {
         
         const actionsCell = document.createElement('td');
         const editBtn = document.createElement('button');
-        editBtn.innerHTML = '<i class="fas fa-edit"></i> Editar';
-        editBtn.className = 'btn-action';
+        editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+        editBtn.className = 'btn-action btn-edit';
         editBtn.addEventListener('click', () => openEditModal(doc.id, 'kilometers', {
           kmInitial: data.kmInitial,
           kmFinal: data.kmFinal
         }));
         
         const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = '<i class="fas fa-trash"></i> Remover';
-        deleteBtn.className = 'btn-action';
+        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+        deleteBtn.className = 'btn-action btn-delete';
         deleteBtn.addEventListener('click', () => deleteKm(doc.id));
         
         actionsCell.appendChild(editBtn);
@@ -394,7 +394,7 @@ function saveKm() {
   const kmFinal = parseInt(document.getElementById('km-final').value);
   
   if (!kmInitial || kmInitial < 0 || !kmFinal || kmFinal <= kmInitial) {
-    alert('Informe valores válidos (Km Final deve ser maior que Km Inicial)');
+    showToast('Informe valores válidos (Km Final deve ser maior que Km Inicial)', 'error');
     return;
   }
   
@@ -415,7 +415,7 @@ function saveKm() {
     showToast('Erro ao salvar: ' + error.message, 'error');
   }).finally(() => {
     saveKmBtn.disabled = false;
-    saveKmBtn.innerHTML = 'Salvar';
+    saveKmBtn.innerHTML = '<i class="fas fa-save"></i> Salvar Quilometragem';
   });
 }
 
@@ -544,7 +544,7 @@ function saveEdit() {
     })
     .finally(() => {
       saveEditBtn.disabled = false;
-      saveEditBtn.innerHTML = 'Salvar';
+      saveEditBtn.innerHTML = '<i class="fas fa-save"></i> Salvar';
     });
 }
 
@@ -625,7 +625,7 @@ function loadChartsData() {
     // Prepara dados para gráfico de pizza
     const pieLabels = [];
     const pieData = [];
-    const pieColors = ['#4361ee', '#3f37c9', '#4895ef', '#4cc9f0', '#f72585'];
+    const pieColors = ['#4a6cf7', '#0ea5e9', '#10b981', '#f59e0b', '#ef4444'];
     
     for (const [app, amount] of Object.entries(earningsByApp)) {
       if (amount > 0) {
@@ -811,7 +811,7 @@ function loadChartsData() {
     showToast('Erro ao carregar dados para gráficos', 'error');
   }).finally(() => {
     updateChartsBtn.disabled = false;
-    updateChartsBtn.innerHTML = 'Atualizar';
+    updateChartsBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Atualizar Gráficos';
   });
 }
 
