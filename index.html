@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DriverControl</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <title>DriverControl - Moderno</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="icon.png">
   
   <!-- PWA Meta Tags -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4361ee">
+  <meta name="theme-color" content="#4a6cf7">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon" href="/icon-192x192.png">
@@ -42,19 +42,21 @@
       <!-- Aba Ganhos -->
       <div id="ganhos" class="tab-content active">
         <div class="form-group">
-          <select id="app-select">
-            <option value="99">99</option>
-            <option value="indrive">Indrive</option>
-            <option value="iupe">IUPE</option>
-            <option value="uber">Uber</option>
-            <option value="outros">Outros</option>
-          </select>
-          <input type="number" id="earnings-amount" placeholder="Valor (R$)" step="0.01">
-          <button id="save-earnings" class="btn-primary">Salvar</button>
+          <div class="form-row">
+            <select id="app-select">
+              <option value="99">99</option>
+              <option value="indrive">Indrive</option>
+              <option value="iupe">IUPE</option>
+              <option value="uber">Uber</option>
+              <option value="outros">Outros</option>
+            </select>
+            <input type="number" id="earnings-amount" placeholder="Valor (R$)" step="0.01">
+          </div>
+          <button id="save-earnings" class="btn-primary"><i class="fas fa-save"></i> Salvar Ganho</button>
         </div>
 
         <div class="table-container">
-          <h3>Últimos Lançamentos</h3>
+          <h3><i class="fas fa-history"></i> Últimos Lançamentos</h3>
           <table id="earnings-table">
             <thead>
               <tr>
@@ -72,13 +74,15 @@
       <!-- Aba Combustível -->
       <div id="combustivel" class="tab-content">
         <div class="form-group">
-          <input type="number" id="fuel-amount" placeholder="Valor (R$)" step="0.01">
-          <input type="number" id="fuel-liters" placeholder="Litros" step="0.1">
-          <button id="save-fuel" class="btn-primary">Salvar</button>
+          <div class="form-row">
+            <input type="number" id="fuel-amount" placeholder="Valor (R$)" step="0.01">
+            <input type="number" id="fuel-liters" placeholder="Litros" step="0.1">
+          </div>
+          <button id="save-fuel" class="btn-primary"><i class="fas fa-save"></i> Salvar Abastecimento</button>
         </div>
 
         <div class="table-container">
-          <h3>Últimos Abastecimentos</h3>
+          <h3><i class="fas fa-history"></i> Últimos Abastecimentos</h3>
           <table id="fuel-table">
             <thead>
               <tr>
@@ -97,13 +101,15 @@
       <!-- Aba Quilometragem -->
       <div id="quilometragem" class="tab-content">
         <div class="form-group">
-          <input type="number" id="km-inicial" placeholder="Km Inicial">
-          <input type="number" id="km-final" placeholder="Km Final">
-          <button id="save-km" class="btn-primary">Salvar</button>
+          <div class="form-row">
+            <input type="number" id="km-inicial" placeholder="Km Inicial">
+            <input type="number" id="km-final" placeholder="Km Final">
+          </div>
+          <button id="save-km" class="btn-primary"><i class="fas fa-save"></i> Salvar Quilometragem</button>
         </div>
 
         <div class="table-container">
-          <h3>Últimos Registros</h3>
+          <h3><i class="fas fa-history"></i> Últimos Registros</h3>
           <table id="km-table">
             <thead>
               <tr>
@@ -129,7 +135,7 @@
             <option value="mensal">Mensal</option>
             <option value="anual">Anual</option>
           </select>
-          <button id="update-charts" class="btn-primary">Atualizar</button>
+          <button id="update-charts" class="btn-primary"><i class="fas fa-sync-alt"></i> Atualizar Gráficos</button>
         </div>
 
         <div class="chart-row">
@@ -169,7 +175,7 @@
     </main>
 
     <footer>
-      <p>&copy; 2025 DriverControl® - Desenvolvido por Antônio Rafael</p>
+      <p>&copy; 2025 DriverControl® - Desenvolvido por <span>Antônio Rafael</span></p>
     </footer>
   </div>
 
@@ -179,7 +185,7 @@
       <span class="close-modal">&times;</span>
       <h3>Editar Registro</h3>
       <div id="modal-form"></div>
-      <button id="save-edit" class="btn-primary">Salvar</button>
+      <button id="save-edit" class="btn-primary"><i class="fas fa-save"></i> Salvar</button>
     </div>
   </div>
 
