@@ -1,242 +1,251 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>DriverControl - Moderno</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="icon.png" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DriverControl - Moderno</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="icon.png" />
 
-  <!-- PWA Meta Tags -->
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#4a6cf7" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="apple-touch-icon" href="/icon-192x192.png" />
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#4a6cf7" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
 
-  <!-- Service Worker Registration -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("sw.js");
-      });
-    }
-  </script>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1><i class="fas fa-car"></i> DriverControl</h1>
-    </header>
+    <!-- Service Worker Registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("sw.js");
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1><i class="fas fa-car"></i> DriverControl</h1>
+      </header>
 
-    <nav>
-      <button class="nav-btn active" data-tab="ganhos">
-        <i class="fas fa-money-bill-wave"></i> Ganhos
-      </button>
-      <button class="nav-btn" data-tab="combustivel">
-        <i class="fas fa-gas-pump"></i> Combustível
-      </button>
-      <button class="nav-btn" data-tab="quilometragem">
-        <i class="fas fa-tachometer-alt"></i> Quilometragem
-      </button>
-      <button class="nav-btn" data-tab="graficos">
-        <i class="fas fa-chart-line"></i> Gráficos
-      </button>
-    </nav>
+      <nav>
+        <button class="nav-btn active" data-tab="ganhos">
+          <i class="fas fa-money-bill-wave"></i> Ganhos
+        </button>
+        <button class="nav-btn" data-tab="combustivel">
+          <i class="fas fa-gas-pump"></i> Combustível
+        </button>
+        <button class="nav-btn" data-tab="quilometragem">
+          <i class="fas fa-tachometer-alt"></i> Quilometragem
+        </button>
+        <button class="nav-btn" data-tab="graficos">
+          <i class="fas fa-chart-line"></i> Gráficos
+        </button>
+      </nav>
 
-    <main>
-      <!-- Aba Ganhos -->
-      <div id="ganhos" class="tab-content active">
-        <div class="form-group">
-          <div class="form-row">
-            <select id="app-select" class="full-width">
-              <option value="99">99</option>
-              <option value="indrive">Indrive</option>
-              <option value="iupe">IUPE</option>
-              <option value="uber">Uber</option>
-              <option value="outros">Outros</option>
-            </select>
-            <input
-              type="text"
-              id="earnings-amount"
-              class="money-input"
-              placeholder="Valor (R$)"
-              inputmode="decimal"
-            />
-            <input type="text" id="earnings-date" class="date-input" placeholder="DD/MM/AAAA" />
+      <main>
+        <!-- Aba Ganhos -->
+        <div id="ganhos" class="tab-content active">
+          <div class="form-group">
+            <div class="form-row">
+              <select id="app-select">
+                <option value="99">99</option>
+                <option value="indrive">Indrive</option>
+                <option value="iupe">IUPE</option>
+                <option value="uber">Uber</option>
+                <option value="outros">Outros</option>
+              </select>
+              <input
+                type="text"
+                id="earnings-amount"
+                class="money-input"
+                placeholder="Valor (R$)"
+                inputmode="decimal"
+              />
+              <input type="date" id="earnings-date" />
+            </div>
+            <button id="save-earnings" class="btn-primary">
+              <i class="fas fa-save"></i> Salvar Ganho
+            </button>
           </div>
-          <button id="save-earnings" class="btn-primary">
-            <i class="fas fa-save"></i> Salvar Ganho
-          </button>
-        </div>
 
-        <div class="table-container">
-          <h3><i class="fas fa-history"></i> Últimos Lançamentos</h3>
-          <table id="earnings-table">
-            <thead>
-              <tr>
-                <th>Data</th>
-                <th>Aplicativo</th>
-                <th>Valor</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Aba Combustível -->
-      <div id="combustivel" class="tab-content">
-        <div class="form-group">
-          <div class="form-row">
-            <input
-              type="text"
-              id="fuel-amount"
-              class="money-input"
-              placeholder="Valor (R$)"
-              inputmode="decimal"
-            />
-            <input
-              type="text"
-              id="fuel-liters"
-              placeholder="Litros"
-              inputmode="decimal"
-            />
-            <input type="text" id="fuel-date" class="date-input" placeholder="DD/MM/AAAA" />
-          </div>
-          <button id="save-fuel" class="btn-primary">
-            <i class="fas fa-save"></i> Salvar Abastecimento
-          </button>
-        </div>
-
-        <div class="table-container">
-          <h3><i class="fas fa-history"></i> Últimos Abastecimentos</h3>
-          <table id="fuel-table">
-            <thead>
-              <tr>
-                <th>Data</th>
-                <th>Valor</th>
-                <th>Litros</th>
-                <th>Preço/L</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Aba Quilometragem -->
-      <div id="quilometragem" class="tab-content">
-        <div class="form-group">
-          <div class="form-row">
-            <input type="number" id="km-inicial" placeholder="Km Inicial" />
-            <input type="number" id="km-final" placeholder="Km Final" />
-            <input type="text" id="km-date" class="date-input" placeholder="DD/MM/AAAA" />
-          </div>
-          <button id="save-km" class="btn-primary">
-            <i class="fas fa-save"></i> Salvar Quilometragem
-          </button>
-        </div>
-
-        <div class="table-container">
-          <h3><i class="fas fa-history"></i> Últimos Registros</h3>
-          <table id="km-table">
-            <thead>
-              <tr>
-                <th>Data</th>
-                <th>Km Inicial</th>
-                <th>Km Final</th>
-                <th>Total Km</th>
-                <th>R$/Km</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Aba Gráficos -->
-      <div id="graficos" class="tab-content">
-        <div class="filter-group">
-          <div class="date-range">
-            <label for="start-date">De:</label>
-            <input type="text" id="start-date" class="date-input" placeholder="DD/MM/AAAA" />
-            <label for="end-date">Até:</label>
-            <input type="text" id="end-date" class="date-input" placeholder="DD/MM/AAAA" />
-          </div>
-          <button id="update-charts" class="btn-primary">
-            <i class="fas fa-sync-alt"></i> Atualizar Gráficos
-          </button>
-        </div>
-
-        <div class="chart-row">
-          <div class="chart-container">
-            <h3>Distribuição de Ganhos</h3>
-            <canvas id="pie-chart"></canvas>
-          </div>
-          <div class="chart-container">
-            <h3>Evolução de Ganhos</h3>
-            <canvas id="line-chart"></canvas>
-          </div>
-          <div class="chart-container">
-            <h3>Consumo de Combustível</h3>
-            <canvas id="consumption-chart"></canvas>
+          <div class="table-container">
+            <h3><i class="fas fa-history"></i> Últimos Lançamentos</h3>
+            <table id="earnings-table">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Aplicativo</th>
+                  <th>Valor</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
         </div>
 
-        <div class="summary-cards">
-          <div class="card">
-            <h3>Total Ganhos</h3>
-            <p id="total-earnings">R$ 0,00</p>
+        <!-- Aba Combustível -->
+        <div id="combustivel" class="tab-content">
+          <div class="form-group">
+            <div class="form-row">
+              <input
+                type="text"
+                id="fuel-amount"
+                class="money-input"
+                placeholder="Valor (R$)"
+                inputmode="decimal"
+              />
+              <input
+                type="text"
+                id="fuel-liters"
+                placeholder="Litros"
+                inputmode="decimal"
+              />
+              <input type="date" id="fuel-date" />
+            </div>
+            <button id="save-fuel" class="btn-primary">
+              <i class="fas fa-save"></i> Salvar Abastecimento
+            </button>
           </div>
-          <div class="card">
-            <h3>Total Combustível</h3>
-            <p id="total-fuel">R$ 0,00</p>
-          </div>
-          <div class="card">
-            <h3>Total Km</h3>
-            <p id="total-km">0 km</p>
-          </div>
-          <div class="card">
-            <h3>Lucro Líquido</h3>
-            <p id="total-profit">R$ 0,00</p>
-          </div>
-          <div class="card">
-            <h3>R$/Km</h3>
-            <p id="km-profit">R$ 0,00/km</p>
+
+          <div class="table-container">
+            <h3><i class="fas fa-history"></i> Últimos Abastecimentos</h3>
+            <table id="fuel-table">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Valor</th>
+                  <th>Litros</th>
+                  <th>Preço/L</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
         </div>
-      </div>
-    </main>
 
-    <footer>
-      <p>
-        &copy; 2025 DriverControl® - Desenvolvido por
-        <span>Antônio Rafael</span>
-      </p>
-    </footer>
-  </div>
+        <!-- Aba Quilometragem -->
+        <div id="quilometragem" class="tab-content">
+          <div class="form-group">
+            <div class="form-row">
+              <input type="number" id="km-inicial" placeholder="Km Inicial" />
+              <input type="number" id="km-final" placeholder="Km Final" />
+              <input type="date" id="km-date" />
+            </div>
+            <button id="save-km" class="btn-primary">
+              <i class="fas fa-save"></i> Salvar Quilometragem
+            </button>
+          </div>
 
-  <!-- Modal de Edição -->
-  <div id="edit-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <h3>Editar Registro</h3>
-      <div id="modal-form"></div>
-      <button id="save-edit" class="btn-primary">
-        <i class="fas fa-save"></i> Salvar
-      </button>
+          <div class="table-container">
+            <h3><i class="fas fa-history"></i> Últimos Registros</h3>
+            <table id="km-table">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Km Inicial</th>
+                  <th>Km Final</th>
+                  <th>Total Km</th>
+                  <th>R$/Km</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Aba Gráficos -->
+        <div id="graficos" class="tab-content">
+          <div class="filter-group">
+            <div class="date-range">
+              <label for="start-date">De:</label>
+              <input type="date" id="start-date" />
+              <label for="end-date">Até:</label>
+              <input type="date" id="end-date" />
+            </div>
+            <button id="update-charts" class="btn-primary">
+              <i class="fas fa-sync-alt"></i> Atualizar Gráficos
+            </button>
+          </div>
+
+          <div class="chart-row">
+            <div class="chart-container">
+              <h3>Distribuição de Ganhos</h3>
+              <canvas id="pie-chart"></canvas>
+            </div>
+            <div class="chart-container">
+              <h3>Evolução de Ganhos</h3>
+              <canvas id="line-chart"></canvas>
+            </div>
+            <div class="chart-container">
+              <h3>Consumo de Combustível</h3>
+              <canvas id="consumption-chart"></canvas>
+            </div>
+          </div>
+
+          <div class="summary-cards">
+            <div class="card">
+              <h3>Total Ganhos</h3>
+              <p id="total-earnings">R$ 0,00</p>
+            </div>
+            <div class="card">
+              <h3>Total Combustível</h3>
+              <p id="total-fuel">R$ 0,00</p>
+            </div>
+            <div class="card">
+              <h3>Total Km</h3>
+              <p id="total-km">0 km</p>
+            </div>
+            <div class="card">
+              <h3>Lucro Líquido</h3>
+              <p id="total-profit">R$ 0,00</p>
+            </div>
+            <div class="card">
+              <h3>R$/Km</h3>
+              <p id="km-profit">R$ 0,00/km</p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <p>
+          &copy; 2025 DriverControl® - Desenvolvido por
+          <span>Antônio Rafael</span>
+        </p>
+      </footer>
     </div>
-  </div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="app.js"></script>
-</body>
+    <!-- Modal de Edição -->
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Editar Registro</h3>
+        <div id="modal-form"></div>
+        <button id="save-edit" class="btn-primary">
+          <i class="fas fa-save"></i> Salvar
+        </button>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
