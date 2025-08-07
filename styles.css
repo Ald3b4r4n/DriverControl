@@ -160,7 +160,7 @@ nav {
 .filter-group select,
 .filter-group input,
 .filter-group label {
-  padding: 14px 18px;
+  padding: 7px 9px;
   border: 2px solid var(--gray-light);
   border-radius: 10px;
   font-size: 16px;
@@ -316,6 +316,24 @@ tr:hover td {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* CORREÇÃO PARA OS INPUTS DE DATA DO GRÁFICO */
+.filter-group .date-input {
+  width: 120px;
+  padding: 7px 9px;
+  border: 2px solid var(--gray-light);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--light);
+  transition: var(--transition);
+}
+
+.filter-group .date-input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
 }
 
 .chart-row {
@@ -401,7 +419,6 @@ tr:hover td {
 }
 
 .card:nth-child(1) p {
-  color: var(--success);
 }
 .card:nth-child(2) p {
   color: var(--danger);
@@ -452,12 +469,18 @@ footer span {
 .modal-content {
   background-color: white;
   margin: 10% auto;
-  padding: 25px;
+  padding: 30px;
   border-radius: 16px;
   box-shadow: var(--card-shadow);
   max-width: 500px;
   width: 90%;
   animation: modalFadeIn 0.3s;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--gray-light);
 }
 
 @keyframes modalFadeIn {
@@ -529,6 +552,41 @@ footer span {
   text-align: right;
 }
 
+/* Correção para o select no modal */
+.modal-content select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--gray-light);
+  border-radius: 10px;
+  font-size: 16px;
+  background: var(--light);
+  box-sizing: border-box;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  transition: var(--transition);
+}
+
+.modal-content select:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
+}
+
+/* Garante que o form-group no modal tenha espaçamento adequado */
+.modal-content .form-group {
+  padding: 15px 0;
+  margin-bottom: 10px;
+}
+
+/* Ajuste adicional para os inputs no modal */
+.modal-content .full-width {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* Responsividade */
 @media (max-width: 992px) {
   .chart-row {
@@ -590,5 +648,16 @@ footer span {
   .filter-group,
   .table-container {
     padding: 15px;
+  }
+
+  /* Ajustes adicionais para inputs de data em telas pequenas */
+  .filter-group .date-input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .date-range {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
