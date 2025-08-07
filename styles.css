@@ -11,7 +11,8 @@
   --gray: #64748b;
   --gray-light: #e2e8f0;
   --white: #ffffff;
-  --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.05);
   --transition: all 0.3s ease;
 }
 
@@ -19,7 +20,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -45,7 +46,7 @@ header {
 }
 
 header::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -127,12 +128,19 @@ nav {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Formulários Modernos */
-.form-group, .filter-group {
+.form-group,
+.filter-group {
   background: var(--white);
   padding: 25px;
   border-radius: 16px;
@@ -147,19 +155,29 @@ nav {
   margin-bottom: 15px;
 }
 
-.form-group input, .form-group select, 
-.filter-group select {
+.form-group input,
+.form-group select,
+.filter-group select,
+.filter-group input,
+.filter-group label {
   padding: 14px 18px;
   border: 2px solid var(--gray-light);
   border-radius: 10px;
   font-size: 16px;
   transition: var(--transition);
   background: var(--light);
-  width: 100%;
 }
 
-.form-group input:focus, .form-group select:focus,
-.filter-group select:focus {
+.filter-group label {
+  background: none;
+  border: none;
+  padding: 0 8px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.filter-group select:focus,
+.filter-group input:focus {
   border-color: var(--primary);
   outline: none;
   box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
@@ -229,6 +247,10 @@ table {
   min-width: 700px;
 }
 
+#fuel-table {
+  min-width: 700px;
+}
+
 th {
   background: linear-gradient(to right, var(--primary), var(--primary-light));
   color: var(--white);
@@ -290,9 +312,15 @@ tr:hover td {
   gap: 15px;
 }
 
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .chart-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 25px;
   margin-bottom: 30px;
 }
@@ -307,7 +335,7 @@ tr:hover td {
 }
 
 .chart-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -345,7 +373,7 @@ tr:hover td {
 }
 
 .card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -372,11 +400,21 @@ tr:hover td {
   color: var(--dark);
 }
 
-.card:nth-child(1) p { color: var(--success); }
-.card:nth-child(2) p { color: var(--danger); }
-.card:nth-child(3) p { color: var(--primary); }
-.card:nth-child(4) p { color: var(--success); }
-.card:nth-child(5) p { color: var(--warning); }
+.card:nth-child(1) p {
+  color: var(--success);
+}
+.card:nth-child(2) p {
+  color: var(--danger);
+}
+.card:nth-child(3) p {
+  color: var(--primary);
+}
+.card:nth-child(4) p {
+  color: var(--success);
+}
+.card:nth-child(5) p {
+  color: var(--warning);
+}
 
 /* Footer Moderno */
 footer {
@@ -423,8 +461,14 @@ footer span {
 }
 
 @keyframes modalFadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .close-modal {
@@ -480,35 +524,50 @@ footer span {
   background: linear-gradient(135deg, var(--danger), #dc2626);
 }
 
+/* Money Input */
+.money-input {
+  text-align: right;
+}
+
 /* Responsividade */
+@media (max-width: 992px) {
+  .chart-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .chart-row {
     grid-template-columns: 1fr;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
   }
-  
+
   nav {
     gap: 6px;
   }
-  
+
   .nav-btn {
     padding: 12px 15px;
     font-size: 14px;
     flex: 1 1 calc(50% - 6px);
   }
-  
+
   .btn-primary {
     width: 100%;
   }
-  
+
   .filter-group {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
+  .date-range {
+    flex-wrap: wrap;
+  }
+
   .modal-content {
     margin: 20% auto;
   }
@@ -518,16 +577,18 @@ footer span {
   header h1 {
     font-size: 1.8rem;
   }
-  
+
   .nav-btn {
     flex: 1 1 100%;
   }
-  
+
   .card p {
     font-size: 1.5rem;
   }
-  
-  .form-group, .filter-group, .table-container {
+
+  .form-group,
+  .filter-group,
+  .table-container {
     padding: 15px;
   }
 }
