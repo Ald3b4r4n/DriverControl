@@ -1167,3 +1167,4 @@ firebase
       if (!doc.data().date) console.log("Registro com date nulo:", doc.id);
     });
   });
+
